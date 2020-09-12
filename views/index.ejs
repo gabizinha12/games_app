@@ -1,0 +1,28 @@
+<%- include('partials/header.ejs') %>
+<body>
+    <div class="container">
+        <h1>Meus games</h1>
+        <a href="/game" class="btn btn-primary">Adicionar jogo</a>
+        <% games.forEach(games => { %>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h3><%= games.titulo %></h3>
+                    <h3><%= games.descricao %></h3>
+                    <h3><%= games.preco %></h3>
+                </div>
+                <div class="card-footer">
+                    <form action="/deletar" method="POST">
+                        <input type="hidden" name="id" value="<%=games.id%>">
+                        <button class="btn btn-danger m-2" type="submit">Deletar</button>
+                    </form>
+                    <form action="/atualizar/<%=games.id%>" method="POST">
+                        <input type="hidden" name="id" value="<%=games.id%>">
+                        <button class="btn btn-primary m-2" type="submit">Editar</button>
+                    </form>
+
+                </div>
+            </div>
+      <%  }) %>
+    </div>
+</body>
+<%- include('partials/footer.ejs') %>
