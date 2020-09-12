@@ -3,16 +3,18 @@
     <div class="container">
         <div class="card mt-4">
             <div class="card-header">
-                <h3 class="mt-3">Adicionar jogo</h3>
+                <h3 class="mt-3">Editar jogo</h3>
             </div>
             <div class="card-body">
-                <form method="POST" action="/atualizar/<%=games.id%>">
+                <form method="POST" action="/atualizar/<%=game.id%>">
                     <label>Título</label>
-                    <input type="text" placeholder="Titulo" class="form-control" name="titulo">
+                    <input type="text" placeholder="Titulo" class="form-control" name="titulo" value="<%=game.titulo%>">
+
                     <label class="mt-3">Descrição</label>
-                    <textarea placeholder="Descreva seu jogo aqui" class="form-control" name="descricao"></textarea>
+                    <textarea placeholder="Descreva seu jogo aqui" class="form-control" name="descricao"><%=game.descricao%></textarea>
+
                     <label>Preço</label>
-                    <input type="number" class="form-control" name="preco"  step="0.01" maxlength="number">
+                    <input type="number" class="form-control" name="preco"  step="0.01" maxlength="number" value="<%=game.preco%>">
                     <button class="btn btn-primary mt-3" type="submit">Atualizar</button>
                     </form>
             </div>
