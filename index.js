@@ -59,19 +59,17 @@ app.post("/deletar", function(req,res) {
 }
 });
 
-
-app.get("/atualizar", function(req,res) {
-    res.render("edit", {
-        game: game
-    })
-});
+app.get("/atualizar/:id", function(req,res) {
+    const game = (req.params.id);
+        res.render("edit", {
+            games: games
+        })
+    });
 
 app.post("/atualizar/:id", function(req,res) {
        let id = req.params.id;
        Game.update({}, { where: {id} }).then(() => {
-        res.render("edit", {
-            games: games
-        })
+        res.render("edit")
     }).catch((erro) => {
         console.log(erro)
     })
