@@ -59,17 +59,23 @@ app.post("/deletar", function(req,res) {
 }
 });
 
-app.get("/atualizar/:id", function(req,res) {
-    const game = (req.params.id);
-        res.render("edit", {
-            games: games
-        })
-    });
+
+app.get("/atualizar/:id", async function(req,res) {
+    const game = await Game.findByPk(req.params.id);
+
+    res.render("edit", {
+        game: game
+    })
+});
 
 app.post("/atualizar/:id", function(req,res) {
-       let id = req.params.id;
-       Game.update({}, { where: {id} }).then(() => {
-        res.render("edit")
+    let id = req.params.id;
+    const titulo = req.body.titulo;
+    const descricao = req.body.descricao;
+    const preco = req.body.preco;
+    
+    Game.update({ titulo, descricao, preco }, { where: {id} }).then((game) => {
+        res.redirect(`/atualizar/${id}`);
     }).catch((erro) => {
         console.log(erro)
     })
