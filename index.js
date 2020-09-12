@@ -75,7 +75,7 @@ app.post("/atualizar/:id", function(req,res) {
     const preco = req.body.preco;
     
     Game.update({ titulo, descricao, preco }, { where: {id} }).then((game) => {
-        res.redirect(`/atualizar/${id}`);
+        res.redirect("/");
     }).catch((erro) => {
         console.log(erro)
     })
